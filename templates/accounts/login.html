@@ -1,0 +1,41 @@
+{% comment %}
+    this should extend some base template
+    also these classes are from the twitter bootstrap css framework
+{% endcomment %}
+
+<div class="row login-row">
+    {% if form.errors %}
+        <div class="span18 offset3">
+            <div class="alert alert-error"><h4>Your username and password didn't match. Please try again.</h4></div>
+        </div>
+    {% endif %}
+    <div class="span10 offset5">
+        <form class="form-horizontal" method="post" action="{% url django.contrib.auth.views.login %}">
+        {% csrf_token %}
+        <div class="control-group">
+            <label class="control-label" for="id_username">User</label>
+            <div class="controls">{{ form.username }}</div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="id_password">Password</label>
+            <div class="controls">{{ form.password }}</div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-primary" type="submit">
+                    Login                    
+                </button>
+            </div>
+        </div>
+
+        <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="span10 offset8">
+        <h5>You can register <a href="{% url ac_register %}">here</a></h5>
+    </div>
+</div>
